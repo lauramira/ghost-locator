@@ -18,6 +18,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity_menu_search"/>
+        android:text="@string/main_activity_menu_search"
+        android:id="@+id/first_user_experience_start_button" />
 
 </LinearLayout>

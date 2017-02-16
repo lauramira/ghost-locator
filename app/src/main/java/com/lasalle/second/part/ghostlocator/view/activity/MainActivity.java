@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,7 +17,8 @@ import com.lasalle.second.part.ghostlocator.view.fragment.ProfileFragment;
 import com.lasalle.second.part.ghostlocator.view.fragment.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        FirstUserExperienceFragment.FirstUserExperienceFragmentEvents {
 
     private BottomNavigationView bottomNavigationView;
 
@@ -40,9 +42,16 @@ public class MainActivity extends AppCompatActivity implements
            (item.getItemId() == R.id.activity_main_bottom_menu_profile))
         {
             setUpFragment(item.getItemId());
+            return true;
         }
 
         return false;
+    }
+
+    @Override
+    public void onStartButtonClicked() {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+        setUpFragment(R.id.activity_main_bottom_menu_search);
     }
 
     private void setUpFragment(int id) {
@@ -52,9 +61,9 @@ public class MainActivity extends AppCompatActivity implements
             existingFragment = createFragment(id);
         }
 
-        fragmentManager.beginTransaction()
-                       .replace(R.id.main_activity_fragment_container, existingFragment, Integer.toString(id))
-                       .commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_activity_fragment_container, existingFragment, Integer.toString(id));
+        fragmentTransaction.commit();
     }
 
     private Fragment createFragment(int id) {
