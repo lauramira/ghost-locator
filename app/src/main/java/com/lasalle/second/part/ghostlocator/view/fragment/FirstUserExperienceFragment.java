@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.lasalle.second.part.ghostlocator.R;
 
-public class MapFragment extends Fragment {
+public class FirstUserExperienceFragment extends Fragment {
 
-    public static MapFragment newInstance() {
-        MapFragment fragment = new MapFragment();
+    public static FirstUserExperienceFragment newInstance() {
+        FirstUserExperienceFragment fragment = new FirstUserExperienceFragment();
         return fragment;
     }
 
@@ -24,6 +24,6 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        return inflater.inflate(R.layout.fragment_first_user_experience, container, false);
     }
 }

@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lasalle.second.part.ghostlocator.view.fragment.SearchFragment"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/first_user_experience_fragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/first_user_experience_intro"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:layout_marginBottom="30dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_menu_search"/>
+
+</LinearLayout>

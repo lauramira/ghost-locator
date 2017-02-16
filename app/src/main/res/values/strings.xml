@@ -4,6 +4,5 @@
     <string name="main_activity_menu_map">Map</string>
     <string name="main_activity_menu_profile">Profile</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_user_experience_intro">Living with fear?\n You think the person next to you can be a ghost?\n Discover if there are any ghosts close to you!</string>
 </resources>
