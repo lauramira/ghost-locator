@@ -1,5 +1,7 @@
 package com.lasalle.second.part.ghostlocator.view.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements
         FirstUserExperienceFragment.FirstUserExperienceFragmentEvents {
 
     private BottomNavigationView bottomNavigationView;
+    private static final String USER_EXPERIENCE_KEY = "userExperienceExecuted";
+    private static final String FILE_NAME = "ghostLocator";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,17 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.main_activity_bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        displayFirstUserExperience();
+
+        SharedPreferences sharedPreferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        if (sharedPreferences.getBoolean(USER_EXPERIENCE_KEY, false)) {
+            displayFirstUserExperience();
+        } else {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(USER_EXPERIENCE_KEY, true);
+            editor.commit();
+        }
+
+
     }
 
     @Override
