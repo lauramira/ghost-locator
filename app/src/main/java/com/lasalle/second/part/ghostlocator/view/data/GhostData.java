@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface GhostData {
 
+    List<Ghost> getByHarryPotter();
+    List<Ghost> getByVideoGames();
+    List<Ghost> getByMovie();
     List<Ghost> getAll();
     Ghost get(Integer id);
 }

@@ -4,10 +4,36 @@
     android:layout_height="match_parent"
     tools:context="com.lasalle.second.part.ghostlocator.view.fragment.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="SearchIt" />
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_search_ghost_type"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            />
+
+        <Spinner
+            android:id="@+id/fragment_search_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_margin="5dp"
+            />
+
+        <Button
+            android:id="@+id/fragment_search_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_search_button"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

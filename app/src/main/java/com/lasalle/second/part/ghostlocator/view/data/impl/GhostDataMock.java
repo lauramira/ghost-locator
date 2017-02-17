@@ -13,27 +13,58 @@ import java.util.List;
  */
 
 public class GhostDataMock implements GhostData {
-    private List<Ghost> list;
+    private List<Ghost> movieGhosts;
+    private List<Ghost> harryPotterGhosts;
+    private List<Ghost> videoGamesGhosts;
+
+
+    @Override
+    public List<Ghost> getAll() {
+        List<Ghost> list = new ArrayList<>();
+        list.addAll(movieGhosts);
+        list.addAll(harryPotterGhosts);
+        list.addAll(videoGamesGhosts);
+
+        return list;
+    }
 
     public GhostDataMock() {
-        this.list = new ArrayList<>(Arrays.asList(
+        this.movieGhosts = new ArrayList<>(Arrays.asList(
                 new Ghost(1, "fantasma1.jpg", new LatLng(51.6615013, -0.4614354), "ghostbusters"),
-                new Ghost(2, "fantasma2.png", new LatLng(51.7715013, -0.4714354), "Mario ghost"),
+                new Ghost(4, "fantasma4.jpg", new LatLng(51.7915013, -0.4414354), "Casper")
+        ));
+
+
+        this.harryPotterGhosts = new ArrayList<>(Arrays.asList(
                 new Ghost(3, "fantasma3.jpg", new LatLng(51.6925013, -0.4244354), "Nicholas de Mimsy-Porpington"),
-                new Ghost(4, "fantasma4.jpg", new LatLng(51.7915013, -0.4414354), "Casper"),
-                new Ghost(5, "fantasma5.jpg", new LatLng(51.6915013, -0.4214354), "Myrtle Warren"),
-                new Ghost(6, "fantasma6.png", new LatLng(51.6895013, -0.4614354), "Comecocos")
+                new Ghost(5, "fantasma5.jpg", new LatLng(51.6915013, -0.4214354), "Myrtle Warren")
+        ));
+
+        this.videoGamesGhosts = new ArrayList<>(Arrays.asList(
+                new Ghost(2, "fantasma2.png", new LatLng(51.7715013, -0.4714354), "Mario ghost"),
+                new Ghost(6, "fantasma6.png", new LatLng(51.6895013, -0.4614354), "Comecocos"),
+                new Ghost(7, "fantasma7.png", new LatLng(51.5895013, -0.4214354), "Haunter")
         ));
     }
 
     @Override
-    public List<Ghost> getAll() {
-        return list;
+    public List<Ghost> getByMovie() {
+        return movieGhosts;
+    }
+
+    @Override
+    public List<Ghost> getByHarryPotter() {
+        return harryPotterGhosts;
+    }
+
+    @Override
+    public List<Ghost> getByVideoGames() {
+        return videoGamesGhosts;
     }
 
     @Override
     public Ghost get(Integer id) {
-        for (Ghost ghost : list){
+        for (Ghost ghost : getAll()){
             if (ghost.getId() == id){
                 return ghost;
             }
