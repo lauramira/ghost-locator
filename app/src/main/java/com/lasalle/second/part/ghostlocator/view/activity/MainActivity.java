@@ -2,13 +2,12 @@ package com.lasalle.second.part.ghostlocator.view.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -27,12 +26,14 @@ import java.util.List;
 public class MainActivity extends AbstractActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
         FirstUserExperienceFragment.FirstUserExperienceFragmentEvents,
-        SearchFragment.SearchFragmentEvents{
+        SearchFragment.SearchFragmentEvents,
+        MapFragment.MapFragmentEvent{
 
     private BottomNavigationView bottomNavigationView;
     private static final String USER_EXPERIENCE_KEY = "userExperienceExecuted";
     private static final String FILE_NAME = "ghostLocator";
     private GhostType ghostType;
+    private Ghost ghost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,7 @@ public class MainActivity extends AbstractActivity implements
         bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.main_activity_bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
-        SharedPreferences sharedPreferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        Boolean userExperienceExecuted = sharedPreferences.getBoolean(USER_EXPERIENCE_KEY, false);
-        if (!userExperienceExecuted) {
-            displayFirstUserExperience();
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(USER_EXPERIENCE_KEY, true);
-            editor.commit();
-        } else {
-            bottomNavigationView.setVisibility(View.VISIBLE);
-            View view = bottomNavigationView.findViewById(R.id.activity_main_bottom_menu_search);
-            view.performClick();
-        }
+        checkFirstUserExperienceExecuted();
 
         ghostType = GhostType.ALL;
     }
@@ -76,7 +65,6 @@ public class MainActivity extends AbstractActivity implements
     @Override
     public void onStartButtonClicked() {
         bottomNavigationView.setVisibility(View.VISIBLE);
-        setUpFragment(R.id.activity_main_bottom_menu_search);
     }
 
     private void setUpFragment(int id) {
@@ -125,15 +113,42 @@ public class MainActivity extends AbstractActivity implements
 
     public List<Ghost> getGhostList() {
         if (ghostType.getId() == GhostType.ALL.getId()){
+            this.ghostType = GhostType.ALL;
             return getGhostManager().getGhosts();
         } else if (ghostType.getId() == GhostType.HARRY_POTTER.getId()){
+            this.ghostType = GhostType.ALL;
             return getGhostManager().getGhostByHarryPotter();
         } else if (ghostType.getId() == GhostType.MOVIE.getId()){
+            this.ghostType = GhostType.ALL;
             return getGhostManager().getGhostByMovie();
         } else if (ghostType.getId() == GhostType.VIDEO_GAMES.getId()){
+            this.ghostType = GhostType.ALL;
             return getGhostManager().getGhostByVideoGames();
         }
-
         return new ArrayList<>();
+    }
+
+    public Ghost getGhost(){
+        return ghost;
+    }
+
+    private void checkFirstUserExperienceExecuted(){
+        SharedPreferences sharedPreferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        Boolean userExperienceExecuted = sharedPreferences.getBoolean(USER_EXPERIENCE_KEY, false);
+        if (!userExperienceExecuted) {
+            displayFirstUserExperience();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(USER_EXPERIENCE_KEY, true);
+            editor.commit();
+        } else {
+            bottomNavigationView.findViewById(R.id.activity_main_bottom_menu_search).performClick();
+        }
+    }
+
+    @Override
+    public void onMarkerClick(Integer id) {
+        ghost = getGhostManager().getGhost(id);
+        View view = bottomNavigationView.findViewById(R.id.activity_main_bottom_menu_profile);
+        view.performClick();
     }
 }

@@ -1,6 +1,7 @@
 package com.lasalle.second.part.ghostlocator.view.data.impl;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.lasalle.second.part.ghostlocator.R;
 import com.lasalle.second.part.ghostlocator.view.data.GhostData;
 import com.lasalle.second.part.ghostlocator.view.model.Ghost;
 
@@ -30,20 +31,20 @@ public class GhostDataMock implements GhostData {
 
     public GhostDataMock() {
         this.movieGhosts = new ArrayList<>(Arrays.asList(
-                new Ghost(1, "fantasma1.jpg", new LatLng(51.6895013, -0.4254354), "ghostbusters"),
-                new Ghost(4, "fantasma4.jpg", new LatLng(51.6945013, -0.4274354), "Casper")
+                new Ghost(1, R.drawable.fantasma1, new LatLng(51.6895013, -0.4254354), "ghostbusters"),
+                new Ghost(4, R.drawable.fantasma4, new LatLng(51.6945013, -0.4274354), "Casper")
         ));
 
 
         this.harryPotterGhosts = new ArrayList<>(Arrays.asList(
-                new Ghost(3, "fantasma3.jpg", new LatLng(51.6925013, -0.4244354), "Nicholas de Mimsy-Porpington"),
-                new Ghost(5, "fantasma5.jpg", new LatLng(51.6915013, -0.4214354), "Myrtle Warren")
+                new Ghost(3, R.drawable.fantasma3, new LatLng(51.6925013, -0.4244354), "Nicholas de Mimsy-Porpington"),
+                new Ghost(5, R.drawable.fantasma5, new LatLng(51.6915013, -0.4214354), "Myrtle Warren")
         ));
 
         this.videoGamesGhosts = new ArrayList<>(Arrays.asList(
-                new Ghost(2, "fantasma2.png", new LatLng(51.6945013, -0.4235354), "Mario ghost"),
-                new Ghost(6, "fantasma6.png", new LatLng(51.6965013, -0.4244354), "Comecocos"),
-                new Ghost(7, "fantasma7.png", new LatLng(51.6995013, -0.4254354), "Haunter")
+                new Ghost(2, R.drawable.fantasma2, new LatLng(51.6945013, -0.4235354), "Mario ghost"),
+                new Ghost(6, R.drawable.fantasma6, new LatLng(51.6965013, -0.4244354), "Comecocos"),
+                new Ghost(7, R.drawable.fantasma7, new LatLng(51.6995013, -0.4254354), "Haunter")
         ));
     }
 

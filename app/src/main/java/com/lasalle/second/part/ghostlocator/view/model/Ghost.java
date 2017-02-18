@@ -10,11 +10,11 @@ public class Ghost {
     private int id;
     private String name;
     private LatLng location;
-    private String imageUrl;
+    private int imageResourceId;
 
-    public Ghost(int id, String imageUrl, LatLng location, String name) {
+    public Ghost(int id, int imageResourceId, LatLng location, String name) {
         this.id = id;
-        this.imageUrl = imageUrl;
+        this.imageResourceId = imageResourceId;
         this.location = location;
         this.name = name;
     }
@@ -27,12 +27,12 @@ public class Ghost {
         this.id = id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public int getImageUrl() {
+        return imageResourceId;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrl(int imageResourceId) {
+        this.imageResourceId = imageResourceId;
     }
 
     public LatLng getLocation() {
