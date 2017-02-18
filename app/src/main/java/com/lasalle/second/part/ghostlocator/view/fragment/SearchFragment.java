@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.MapView;
 import com.lasalle.second.part.ghostlocator.R;
 import com.lasalle.second.part.ghostlocator.view.GhostType;
 
@@ -43,6 +44,9 @@ public class SearchFragment extends Fragment implements Spinner.OnItemSelectedLi
         Button button = (Button) view.findViewById(R.id.fragment_search_button);
         button.setOnClickListener(this);
 
+        Spinner spinner = (Spinner) view.findViewById(R.id.fragment_search_spinner);
+        spinner.setOnItemSelectedListener(this);
+
         return view;
     }
 
@@ -56,7 +60,7 @@ public class SearchFragment extends Fragment implements Spinner.OnItemSelectedLi
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        ghostType = GhostType.HARRY_POTTER;
+        ghostType = GhostType.ALL;
     }
 
     @Override

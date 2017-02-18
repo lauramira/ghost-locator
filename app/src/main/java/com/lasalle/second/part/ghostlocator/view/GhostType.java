@@ -10,9 +10,13 @@ public enum GhostType {
     VIDEO_GAMES(3),
     HARRY_POTTER(4);
 
-    GhostType(Integer id) {
+    GhostType(int id) {
         this.id = id;
     }
 
-    private Integer id;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
 }

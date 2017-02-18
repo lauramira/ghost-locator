@@ -23,4 +23,16 @@ public class GhostManager {
     public Ghost getGhost(Integer id){
         return this.ghostData.get(id);
     }
+
+    public List<Ghost> getGhostByMovie() {
+        return this.ghostData.getByMovie();
+    }
+
+    public List<Ghost> getGhostByHarryPotter() {
+        return this.ghostData.getByHarryPotter();
+    }
+
+    public List<Ghost> getGhostByVideoGames() {
+        return this.ghostData.getByVideoGames();
+    }
 }

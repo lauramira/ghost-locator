@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.lasalle.second.part.ghostlocator.R;
+import com.lasalle.second.part.ghostlocator.view.AbstractActivity;
 import com.lasalle.second.part.ghostlocator.view.GhostType;
 import com.lasalle.second.part.ghostlocator.view.fragment.FirstUserExperienceFragment;
 import com.lasalle.second.part.ghostlocator.view.fragment.MapFragment;
@@ -20,7 +21,10 @@ import com.lasalle.second.part.ghostlocator.view.fragment.ProfileFragment;
 import com.lasalle.second.part.ghostlocator.view.fragment.SearchFragment;
 import com.lasalle.second.part.ghostlocator.view.model.Ghost;
 
-public class MainActivity extends AppCompatActivity implements
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AbstractActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
         FirstUserExperienceFragment.FirstUserExperienceFragmentEvents,
         SearchFragment.SearchFragmentEvents{
@@ -39,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.main_activity_bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-
         SharedPreferences sharedPreferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         Boolean userExperienceExecuted = sharedPreferences.getBoolean(USER_EXPERIENCE_KEY, false);
         if (!userExperienceExecuted) {
@@ -49,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements
             editor.commit();
         } else {
             bottomNavigationView.setVisibility(View.VISIBLE);
-            setUpFragment(R.id.activity_main_bottom_menu_search);
+            View view = bottomNavigationView.findViewById(R.id.activity_main_bottom_menu_search);
+            view.performClick();
         }
+
+        ghostType = GhostType.ALL;
     }
 
     @Override
@@ -113,10 +119,21 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSearchButtonClicked(GhostType ghostType) {
         this.ghostType = ghostType;
-        setUpFragment(R.id.activity_main_bottom_menu_map);
+        View view = bottomNavigationView.findViewById(R.id.activity_main_bottom_menu_map);
+        view.performClick();
     }
 
-    public GhostType getGhostType(){
-        return ghostType;
+    public List<Ghost> getGhostList() {
+        if (ghostType.getId() == GhostType.ALL.getId()){
+            return getGhostManager().getGhosts();
+        } else if (ghostType.getId() == GhostType.HARRY_POTTER.getId()){
+            return getGhostManager().getGhostByHarryPotter();
+        } else if (ghostType.getId() == GhostType.MOVIE.getId()){
+            return getGhostManager().getGhostByMovie();
+        } else if (ghostType.getId() == GhostType.VIDEO_GAMES.getId()){
+            return getGhostManager().getGhostByVideoGames();
+        }
+
+        return new ArrayList<>();
     }
 }

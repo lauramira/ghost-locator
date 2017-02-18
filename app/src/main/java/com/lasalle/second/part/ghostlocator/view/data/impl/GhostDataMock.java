@@ -30,8 +30,8 @@ public class GhostDataMock implements GhostData {
 
     public GhostDataMock() {
         this.movieGhosts = new ArrayList<>(Arrays.asList(
-                new Ghost(1, "fantasma1.jpg", new LatLng(51.6615013, -0.4614354), "ghostbusters"),
-                new Ghost(4, "fantasma4.jpg", new LatLng(51.7915013, -0.4414354), "Casper")
+                new Ghost(1, "fantasma1.jpg", new LatLng(51.6895013, -0.4254354), "ghostbusters"),
+                new Ghost(4, "fantasma4.jpg", new LatLng(51.6945013, -0.4274354), "Casper")
         ));
 
 
@@ -41,9 +41,9 @@ public class GhostDataMock implements GhostData {
         ));
 
         this.videoGamesGhosts = new ArrayList<>(Arrays.asList(
-                new Ghost(2, "fantasma2.png", new LatLng(51.7715013, -0.4714354), "Mario ghost"),
-                new Ghost(6, "fantasma6.png", new LatLng(51.6895013, -0.4614354), "Comecocos"),
-                new Ghost(7, "fantasma7.png", new LatLng(51.5895013, -0.4214354), "Haunter")
+                new Ghost(2, "fantasma2.png", new LatLng(51.6945013, -0.4235354), "Mario ghost"),
+                new Ghost(6, "fantasma6.png", new LatLng(51.6965013, -0.4244354), "Comecocos"),
+                new Ghost(7, "fantasma7.png", new LatLng(51.6995013, -0.4254354), "Haunter")
         ));
     }
 
